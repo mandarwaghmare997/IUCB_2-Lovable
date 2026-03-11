@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Shield, Mail, MapPin, ExternalLink } from "lucide-react";
+import { Mail, MapPin, ExternalLink } from "lucide-react";
+import iucbLogo from "@/assets/iucb-logo.png";
 
 const Footer = () => {
   return (
