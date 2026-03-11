@@ -1,0 +1,177 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "accreditation": "Accréditation",
+    "certifications": "Certifications",
+    "training": "Formation",
+    "directory": "Répertoire",
+    "resources": "Ressources",
+    "contact": "Contact",
+    "applyNow": "Postuler"
+  },
+  "hero": {
+    "badge": "Écosystème mondial d'accréditation",
+    "title1": "Écosystème mondial d'accréditation et de",
+    "titleHighlight": "Certification",
+    "title2": "",
+    "subtitle": "Autonomiser les organisations, auditeurs et organismes de formation grâce à des cadres d'accréditation et de benchmarking mondialement reconnus pour les normes ISO, Cybersécurité et Confidentialité.",
+    "cta1": "Obtenir l'accréditation",
+    "cta2": "Explorer les certifications"
+  },
+  "features": {
+    "accreditation": {
+      "title": "Programmes d'accréditation",
+      "description": "Accréditation complète pour les organismes de certification, les auditeurs et les prestataires de formation."
+    },
+    "certifications": {
+      "title": "Certifications",
+      "description": "Normes ISO, cadres de cybersécurité et certifications de confidentialité pour l'excellence organisationnelle."
+    },
+    "training": {
+      "title": "Formation et examens",
+      "description": "Parcours de formation de classe mondiale et systèmes d'examen pour les professionnels de la conformité."
+    },
+    "learnMore": "En savoir plus"
+  },
+  "whyChoose": {
+    "title": "Pourquoi choisir",
+    "titleHighlight": "IUCB",
+    "subtitle": "Nous fournissons un cadre sécurisé, transparent et mondialement reconnu pour l'accréditation et le benchmarking.",
+    "global": { "title": "Reconnaissance mondiale", "description": "Accepté dans le monde entier dans les principales industries." },
+    "versatile": { "title": "Accréditation polyvalente", "description": "Programmes flexibles couvrant les normes ISO, Cybersécurité et Confidentialité." },
+    "benchmarks": { "title": "Références industrielles", "description": "Établir la référence en matière de conformité et d'excellence opérationnelle." },
+    "secure": { "title": "Processus sécurisé", "description": "Méthodologies d'évaluation transparentes, éthiques et rigoureuses." }
+  },
+  "focusAreas": {
+    "title": "Nos domaines d'expertise",
+    "subtitle": "Promouvoir l'excellence dans les domaines critiques",
+    "viewAll": "Voir toutes les normes",
+    "iso": { "title": "Normes ISO", "description": "ISO 27001, ISO 9001, ISO 42001, ISO 22301 et plus" },
+    "cyber": { "title": "Cadres de cybersécurité", "description": "SOC 2, NIST, CIS Controls, Zero Trust" },
+    "privacy": { "title": "Certifications de confidentialité", "description": "RGPD, CCPA, HIPAA, Protection des données" },
+    "benchmarks": { "title": "Références industrielles", "description": "Métriques de performance et scoring de conformité" }
+  },
+  "sectors": {
+    "title": "La confiance des secteurs",
+    "titleHighlight": "leaders",
+    "it": "IT & Technologie",
+    "healthcare": "Santé",
+    "fintech": "Fintech",
+    "manufacturing": "Industrie",
+    "education": "Éducation",
+    "government": "Gouvernement"
+  },
+  "cta": {
+    "title": "Prêt à obtenir",
+    "titleHighlight": "l'accréditation",
+    "subtitle": "Rejoignez le réseau mondial d'organisations accréditées. Commencez votre parcours d'accréditation aujourd'hui.",
+    "apply": "Postuler",
+    "contact": "Nous contacter"
+  },
+  "footer": {
+    "description": "Autonomiser les organisations grâce à des cadres d'accréditation mondialement reconnus pour les normes ISO, Cybersécurité et Confidentialité.",
+    "location": "Tallinn, Estonie",
+    "quickLinks": "Liens rapides",
+    "standards": "Normes",
+    "contactTitle": "Contact",
+    "verifyCredentials": "Vérifier les accréditations",
+    "copyright": "Union Internationale pour la Certification et le Benchmarking. Tous droits réservés.",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation"
+  },
+  "about": {
+    "title": "À propos de l'IUCB",
+    "subtitle": "Union Internationale pour la Certification et le Benchmarking",
+    "missionTitle": "Notre mission",
+    "mission": "Établir et maintenir les plus hauts standards d'accréditation et de certification à l'échelle mondiale.",
+    "visionTitle": "Notre vision",
+    "vision": "Un monde où chaque organisation opère avec une excellence vérifiée, favorisant la confiance et la croissance durable.",
+    "valuesTitle": "Nos valeurs",
+    "values": {
+      "integrity": { "title": "Intégrité", "description": "Engagement indéfectible envers les normes éthiques." },
+      "excellence": { "title": "Excellence", "description": "Élever continuellement la qualité de l'accréditation." },
+      "innovation": { "title": "Innovation", "description": "Adopter les nouvelles technologies et méthodologies." },
+      "collaboration": { "title": "Collaboration", "description": "Construire des partenariats qui renforcent l'écosystème." }
+    },
+    "headquartersTitle": "Siège social",
+    "headquarters": "Basé à Tallinn, Estonie, l'IUCB opère mondialement avec un réseau de partenaires accrédités.",
+    "statsOrgs": "Organisations accréditées",
+    "statsCountries": "Pays desservis",
+    "statsStandards": "Normes couvertes",
+    "statsAuditors": "Auditeurs certifiés"
+  },
+  "accreditationPage": {
+    "title": "Programmes d'accréditation",
+    "subtitle": "Parcours d'accréditation complets pour les organismes de certification, auditeurs et prestataires de formation.",
+    "cbTitle": "Accréditation des organismes de certification",
+    "cbDesc": "Accréditez votre organisation en tant qu'organisme de certification reconnu.",
+    "auditorTitle": "Accréditation des auditeurs",
+    "auditorDesc": "Accréditation individuelle pour les auditeurs démontrant leur compétence.",
+    "trainingTitle": "Accréditation des prestataires de formation",
+    "trainingDesc": "Accréditation pour les organismes de formation alignés sur les normes IUCB.",
+    "processTitle": "Processus d'accréditation",
+    "step1": "Soumission de la demande",
+    "step1Desc": "Soumettez votre demande avec la documentation requise.",
+    "step2": "Examen des documents",
+    "step2Desc": "Notre équipe examine tous les matériaux soumis.",
+    "step3": "Évaluation sur site",
+    "step3Desc": "Évaluation complète sur site par des évaluateurs qualifiés.",
+    "step4": "Décision et certification",
+    "step4Desc": "Le comité d'accréditation examine les résultats et rend sa décision.",
+    "applyTitle": "Commencez votre parcours",
+    "applySubtitle": "Contactez notre équipe d'accréditation.",
+    "applyBtn": "Demander l'accréditation"
+  },
+  "certificationsPage": {
+    "title": "Certifications et normes",
+    "subtitle": "Programmes de certification mondialement reconnus.",
+    "isoTitle": "Normes ISO",
+    "cyberTitle": "Cadres de cybersécurité",
+    "privacyTitle": "Certifications de confidentialité",
+    "industryTitle": "Normes industrielles",
+    "exploreBtn": "Explorer la norme"
+  },
+  "trainingPage": {
+    "title": "Formation et examens",
+    "subtitle": "Parcours de formation de classe mondiale pour les professionnels de la conformité.",
+    "programsTitle": "Programmes de formation",
+    "examTitle": "Système d'examen",
+    "examDesc": "Notre système d'examen rigoureux garantit les plus hauts standards de compétence.",
+    "benefitsTitle": "Pourquoi se former avec IUCB ?",
+    "enrollBtn": "S'inscrire",
+    "contactBtn": "Contacter l'équipe formation"
+  },
+  "directoryPage": {
+    "title": "Répertoire des accrédités",
+    "subtitle": "Recherchez dans notre répertoire mondial.",
+    "searchPlaceholder": "Rechercher par nom, pays ou norme...",
+    "filterAll": "Tous",
+    "filterOrgs": "Organisations",
+    "filterAuditors": "Auditeurs",
+    "filterTraining": "Prestataires de formation",
+    "noResults": "Aucun résultat trouvé.",
+    "viewProfile": "Voir le profil"
+  },
+  "resourcesPage": {
+    "title": "Ressources",
+    "subtitle": "Guides, publications, modèles et outils pour votre parcours d'accréditation.",
+    "guidesTitle": "Guides et publications",
+    "templatesTitle": "Modèles et formulaires",
+    "faqTitle": "Questions fréquentes",
+    "downloadBtn": "Télécharger"
+  },
+  "contactPage": {
+    "title": "Nous contacter",
+    "subtitle": "Contactez notre équipe pour toute question.",
+    "formName": "Nom complet",
+    "formEmail": "Adresse e-mail",
+    "formSubject": "Sujet",
+    "formMessage": "Message",
+    "formSubmit": "Envoyer",
+    "generalTitle": "Renseignements généraux",
+    "accreditationTitle": "Accréditation",
+    "partnershipsTitle": "Partenariats",
+    "officeTitle": "Siège social"
+  }
+}

@@ -6,7 +6,57 @@
 
 @layer base {
   :root {
-    /* IUCB Design System — Dark Navy & Gold */
+    /* IUCB Light Theme — Clean white with navy/gold accents */
+    --background: 210 20% 98%;
+    --foreground: 220 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 12%;
+
+    --primary: 40 65% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 94%;
+    --secondary-foreground: 220 30% 12%;
+
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 220 25% 16%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 40 65% 50%;
+
+    --radius: 0.5rem;
+
+    --gold: 40 65% 50%;
+    --gold-light: 40 70% 65%;
+    --gold-dark: 40 60% 38%;
+    --navy: 220 30% 12%;
+    --navy-light: 220 25% 20%;
+    --navy-medium: 220 20% 25%;
+    --navy-lighter: 220 15% 35%;
+
+    --sidebar-background: 220 15% 96%;
+    --sidebar-foreground: 220 15% 30%;
+    --sidebar-primary: 40 65% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 92%;
+    --sidebar-accent-foreground: 220 15% 30%;
+    --sidebar-border: 220 13% 88%;
+    --sidebar-ring: 40 65% 50%;
+  }
+
+  .dark {
+    /* IUCB Dark Theme — Navy & Gold */
     --background: 220 30% 8%;
     --foreground: 210 20% 95%;
 
@@ -35,7 +85,13 @@
     --input: 220 15% 20%;
     --ring: 40 65% 55%;
 
-    --radius: 0.5rem;
+    --gold: 40 65% 55%;
+    --gold-light: 40 70% 70%;
+    --gold-dark: 40 60% 40%;
+    --navy: 220 30% 8%;
+    --navy-light: 220 25% 14%;
+    --navy-medium: 220 20% 18%;
+    --navy-lighter: 220 15% 25%;
 
     --sidebar-background: 220 25% 10%;
     --sidebar-foreground: 210 20% 90%;
@@ -45,20 +101,6 @@
     --sidebar-accent-foreground: 210 20% 90%;
     --sidebar-border: 220 15% 18%;
     --sidebar-ring: 40 65% 55%;
-
-    /* Custom tokens */
-    --gold: 40 65% 55%;
-    --gold-light: 40 70% 70%;
-    --gold-dark: 40 60% 40%;
-    --navy: 220 30% 8%;
-    --navy-light: 220 25% 14%;
-    --navy-medium: 220 20% 18%;
-    --navy-lighter: 220 15% 25%;
-    
-    --gradient-gold: linear-gradient(135deg, hsl(40 65% 55%), hsl(40 70% 70%));
-    --gradient-navy: linear-gradient(180deg, hsl(220 30% 8%), hsl(220 25% 14%));
-    --shadow-gold: 0 4px 30px -5px hsl(40 65% 55% / 0.25);
-    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.4);
   }
 }
 
@@ -74,10 +116,22 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
   }
+
+  /* RTL support */
+  [dir="rtl"] {
+    text-align: right;
+  }
 }
 
 @layer utilities {
   .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(40 65% 50%), hsl(40 70% 65%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .dark .text-gradient-gold {
     background: linear-gradient(135deg, hsl(40 65% 55%), hsl(40 70% 70%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -85,15 +139,19 @@
   }
 
   .bg-gradient-gold {
+    background: linear-gradient(135deg, hsl(40 65% 50%), hsl(40 70% 65%));
+  }
+
+  .dark .bg-gradient-gold {
     background: linear-gradient(135deg, hsl(40 65% 55%), hsl(40 70% 70%));
   }
 
   .bg-gradient-navy {
-    background: linear-gradient(180deg, hsl(220 30% 8%), hsl(220 25% 14%));
+    background: linear-gradient(180deg, hsl(220 30% 12%), hsl(220 25% 20%));
   }
 
-  .border-gold {
-    border-color: hsl(40 65% 55%);
+  .dark .bg-gradient-navy {
+    background: linear-gradient(180deg, hsl(220 30% 8%), hsl(220 25% 14%));
   }
 
   .glow-gold {
@@ -101,8 +159,22 @@
   }
 
   .glass-card {
-    background: hsl(220 25% 12% / 0.7);
+    background: hsl(0 0% 100% / 0.7);
     backdrop-filter: blur(16px);
+    border: 1px solid hsl(220 13% 88% / 0.5);
+  }
+
+  .dark .glass-card {
+    background: hsl(220 25% 12% / 0.7);
     border: 1px solid hsl(220 15% 20% / 0.5);
+  }
+
+  /* Logo inversion for light theme */
+  .logo-adaptive {
+    filter: none;
+  }
+
+  .dark .logo-adaptive {
+    filter: brightness(1.3);
   }
 }
