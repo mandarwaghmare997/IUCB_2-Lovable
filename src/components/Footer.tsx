@@ -9,14 +9,8 @@ const Footer = () => {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary">
-                <Shield className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-lg font-bold font-display text-foreground">IUCB</span>
-                <span className="text-[10px] uppercase tracking-widest text-muted-foreground">International Union</span>
-              </div>
+            <Link to="/" className="flex items-center gap-2">
+              <img src={iucbLogo} alt="IUCB Logo" className="h-12 w-auto" />
             </Link>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Empowering organizations through globally recognized accreditation and benchmarking frameworks for ISO, Cybersecurity & Privacy Standards.
