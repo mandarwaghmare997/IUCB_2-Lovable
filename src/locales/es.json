@@ -1,0 +1,177 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "accreditation": "Acreditación",
+    "certifications": "Certificaciones",
+    "training": "Formación",
+    "directory": "Directorio",
+    "resources": "Recursos",
+    "contact": "Contacto",
+    "applyNow": "Aplicar"
+  },
+  "hero": {
+    "badge": "Ecosistema global de acreditación",
+    "title1": "Ecosistema global de acreditación y",
+    "titleHighlight": "Certificación",
+    "title2": "",
+    "subtitle": "Empoderando a organizaciones, auditores y organismos de formación a través de marcos de acreditación y benchmarking reconocidos mundialmente para estándares ISO, Ciberseguridad y Privacidad.",
+    "cta1": "Obtener acreditación",
+    "cta2": "Explorar certificaciones"
+  },
+  "features": {
+    "accreditation": {
+      "title": "Programas de acreditación",
+      "description": "Acreditación integral para organismos de certificación, auditores y proveedores de formación."
+    },
+    "certifications": {
+      "title": "Certificaciones",
+      "description": "Estándares ISO, marcos de ciberseguridad y certificaciones de privacidad para la excelencia organizacional."
+    },
+    "training": {
+      "title": "Formación y exámenes",
+      "description": "Rutas de formación de clase mundial y sistemas de exámenes para profesionales del cumplimiento."
+    },
+    "learnMore": "Más información"
+  },
+  "whyChoose": {
+    "title": "¿Por qué elegir",
+    "titleHighlight": "IUCB",
+    "subtitle": "Proporcionamos un marco seguro, transparente y reconocido mundialmente para la acreditación y el benchmarking.",
+    "global": { "title": "Reconocimiento global", "description": "Aceptado en todo el mundo en las principales industrias." },
+    "versatile": { "title": "Acreditación versátil", "description": "Programas flexibles que cubren estándares ISO, Ciberseguridad y Privacidad." },
+    "benchmarks": { "title": "Estándares industriales", "description": "Estableciendo el estándar de oro en cumplimiento y excelencia operativa." },
+    "secure": { "title": "Proceso seguro", "description": "Metodologías de evaluación transparentes, éticas y rigurosas." }
+  },
+  "focusAreas": {
+    "title": "Nuestras áreas de enfoque",
+    "subtitle": "Impulsando la excelencia en dominios críticos",
+    "viewAll": "Ver todos los estándares",
+    "iso": { "title": "Estándares ISO", "description": "ISO 27001, ISO 9001, ISO 42001, ISO 22301 y más" },
+    "cyber": { "title": "Marcos de ciberseguridad", "description": "SOC 2, NIST, CIS Controls, Zero Trust" },
+    "privacy": { "title": "Certificaciones de privacidad", "description": "GDPR, CCPA, HIPAA, Protección de datos" },
+    "benchmarks": { "title": "Estándares industriales", "description": "Métricas de rendimiento y puntuación de cumplimiento" }
+  },
+  "sectors": {
+    "title": "Confianza de los sectores",
+    "titleHighlight": "líderes",
+    "it": "TI y Tecnología",
+    "healthcare": "Salud",
+    "fintech": "Fintech",
+    "manufacturing": "Manufactura",
+    "education": "Educación",
+    "government": "Gobierno"
+  },
+  "cta": {
+    "title": "¿Listo para obtener la",
+    "titleHighlight": "acreditación",
+    "subtitle": "Únase a la red global de organizaciones acreditadas. Comience su viaje de acreditación hoy.",
+    "apply": "Aplicar ahora",
+    "contact": "Contáctenos"
+  },
+  "footer": {
+    "description": "Empoderando a organizaciones a través de marcos de acreditación reconocidos mundialmente para estándares ISO, Ciberseguridad y Privacidad.",
+    "location": "Tallin, Estonia",
+    "quickLinks": "Enlaces rápidos",
+    "standards": "Estándares",
+    "contactTitle": "Contacto",
+    "verifyCredentials": "Verificar credenciales",
+    "copyright": "Unión Internacional para la Certificación y el Benchmarking. Todos los derechos reservados.",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de servicio"
+  },
+  "about": {
+    "title": "Sobre IUCB",
+    "subtitle": "Unión Internacional para la Certificación y el Benchmarking",
+    "missionTitle": "Nuestra misión",
+    "mission": "Establecer y mantener los más altos estándares de acreditación y certificación a nivel mundial.",
+    "visionTitle": "Nuestra visión",
+    "vision": "Un mundo donde cada organización opera con excelencia verificada, fomentando la confianza y el crecimiento sostenible.",
+    "valuesTitle": "Nuestros valores",
+    "values": {
+      "integrity": { "title": "Integridad", "description": "Compromiso inquebrantable con los estándares éticos." },
+      "excellence": { "title": "Excelencia", "description": "Elevar continuamente la calidad de la acreditación." },
+      "innovation": { "title": "Innovación", "description": "Adoptar nuevas tecnologías y metodologías." },
+      "collaboration": { "title": "Colaboración", "description": "Construir alianzas que fortalezcan el ecosistema." }
+    },
+    "headquartersTitle": "Sede central",
+    "headquarters": "Con sede en Tallin, Estonia, IUCB opera globalmente con una red de socios acreditados.",
+    "statsOrgs": "Organizaciones acreditadas",
+    "statsCountries": "Países atendidos",
+    "statsStandards": "Estándares cubiertos",
+    "statsAuditors": "Auditores certificados"
+  },
+  "accreditationPage": {
+    "title": "Programas de acreditación",
+    "subtitle": "Rutas de acreditación integrales para organismos de certificación, auditores y proveedores de formación.",
+    "cbTitle": "Acreditación de organismos de certificación",
+    "cbDesc": "Acredite su organización como un organismo de certificación reconocido.",
+    "auditorTitle": "Acreditación de auditores",
+    "auditorDesc": "Acreditación individual para auditores que demuestran competencia.",
+    "trainingTitle": "Acreditación de proveedores de formación",
+    "trainingDesc": "Acreditación para organismos de formación alineados con los estándares IUCB.",
+    "processTitle": "Proceso de acreditación",
+    "step1": "Presentación de solicitud",
+    "step1Desc": "Presente su solicitud con la documentación requerida.",
+    "step2": "Revisión de documentos",
+    "step2Desc": "Nuestro equipo revisa todos los materiales presentados.",
+    "step3": "Evaluación en sitio",
+    "step3Desc": "Evaluación completa en sitio por evaluadores calificados.",
+    "step4": "Decisión y certificación",
+    "step4Desc": "El comité de acreditación revisa los hallazgos y emite su decisión.",
+    "applyTitle": "Comience su viaje",
+    "applySubtitle": "Contacte a nuestro equipo de acreditación.",
+    "applyBtn": "Solicitar acreditación"
+  },
+  "certificationsPage": {
+    "title": "Certificaciones y estándares",
+    "subtitle": "Programas de certificación reconocidos mundialmente.",
+    "isoTitle": "Estándares ISO",
+    "cyberTitle": "Marcos de ciberseguridad",
+    "privacyTitle": "Certificaciones de privacidad",
+    "industryTitle": "Estándares industriales",
+    "exploreBtn": "Explorar estándar"
+  },
+  "trainingPage": {
+    "title": "Formación y exámenes",
+    "subtitle": "Rutas de formación de clase mundial para profesionales del cumplimiento.",
+    "programsTitle": "Programas de formación",
+    "examTitle": "Sistema de exámenes",
+    "examDesc": "Nuestro riguroso sistema de exámenes garantiza los más altos estándares de competencia.",
+    "benefitsTitle": "¿Por qué formarse con IUCB?",
+    "enrollBtn": "Inscribirse",
+    "contactBtn": "Contactar equipo de formación"
+  },
+  "directoryPage": {
+    "title": "Directorio de acreditados",
+    "subtitle": "Busque en nuestro directorio global.",
+    "searchPlaceholder": "Buscar por nombre, país o estándar...",
+    "filterAll": "Todos",
+    "filterOrgs": "Organizaciones",
+    "filterAuditors": "Auditores",
+    "filterTraining": "Proveedores de formación",
+    "noResults": "No se encontraron resultados.",
+    "viewProfile": "Ver perfil"
+  },
+  "resourcesPage": {
+    "title": "Recursos",
+    "subtitle": "Guías, publicaciones, plantillas y herramientas para su viaje de acreditación.",
+    "guidesTitle": "Guías y publicaciones",
+    "templatesTitle": "Plantillas y formularios",
+    "faqTitle": "Preguntas frecuentes",
+    "downloadBtn": "Descargar"
+  },
+  "contactPage": {
+    "title": "Contáctenos",
+    "subtitle": "Póngase en contacto con nuestro equipo.",
+    "formName": "Nombre completo",
+    "formEmail": "Correo electrónico",
+    "formSubject": "Asunto",
+    "formMessage": "Mensaje",
+    "formSubmit": "Enviar mensaje",
+    "generalTitle": "Consultas generales",
+    "accreditationTitle": "Acreditación",
+    "partnershipsTitle": "Alianzas",
+    "officeTitle": "Oficina central"
+  }
+}
