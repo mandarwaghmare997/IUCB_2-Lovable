@@ -2,8 +2,8 @@ import { Shield, CheckCircle, Globe, Lock, Award, ArrowRight, BookOpen, Users, L
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import heroBg from "@/assets/hero-bg.jpg";
-import iucbSeal from "@/assets/iucb-seal.png";
+import heroBg from "@/assets/hero-bg-original.jpg";
+import iucbSeal from "@/assets/iucb-seal-original.png";
 
 const Index = () => {
   const { t } = useTranslation();
