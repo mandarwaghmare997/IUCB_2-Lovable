@@ -47,7 +47,7 @@ const AdminTemplates = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold font-display text-foreground flex items-center gap-2">
-            <FileTemplate className="h-6 w-6" /> Certificate Templates
+            <FileCode className="h-6 w-6" /> Certificate Templates
           </h1>
           <p className="text-muted-foreground">Manage HTML/CSS certificate templates</p>
         </div>

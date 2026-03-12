@@ -13,7 +13,7 @@ const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/admin" },
   { label: "Certificates", icon: Award, path: "/admin/certificates" },
   { label: "Organizations", icon: Building2, path: "/admin/organizations" },
-  { label: "Templates", icon: FileTemplate, path: "/admin/templates" },
+  { label: "Templates", icon: FileCode, path: "/admin/templates" },
   { label: "Documents", icon: FileText, path: "/admin/documents" },
   { label: "Complaints", icon: MessageSquare, path: "/admin/complaints" },
   { label: "Users", icon: Users, path: "/admin/users" },
