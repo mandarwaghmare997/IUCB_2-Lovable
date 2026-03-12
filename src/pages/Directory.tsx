@@ -90,7 +90,7 @@ const Directory = () => {
                         ))}
                       </div>
                     </div>
-                    <span className="rounded-full bg-green-500/10 px-2.5 py-1 text-xs font-medium text-green-600 dark:text-green-400">{entry.status}</span>
+                    <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">{entry.status}</span>
                   </div>
                 );
               })}

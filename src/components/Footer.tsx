@@ -24,10 +24,16 @@ const Footer = () => {
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">{t("footer.quickLinks")}</h4>
             <ul className="space-y-2.5">
-              {(["about", "accreditation", "certifications", "training", "directory"] as const).map((key) => (
-                <li key={key}>
-                  <Link to={`/${key}`} className="text-sm text-muted-foreground transition-colors hover:text-primary">
-                    {t(`nav.${key}`)}
+              {[
+                { key: "about", path: "/about" },
+                { key: "accreditation", path: "/accreditation" },
+                { key: "certifications", path: "/certifications" },
+                { key: "training", path: "/training" },
+                { key: "directory", path: "/directory" },
+              ].map((item) => (
+                <li key={item.key}>
+                  <Link to={item.path} className="text-sm text-muted-foreground transition-colors hover:text-primary">
+                    {t(`nav.${item.key}`)}
                   </Link>
                 </li>
               ))}
@@ -35,11 +41,13 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">{t("footer.standards")}</h4>
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">Trust & Governance</h4>
             <ul className="space-y-2.5">
-              {["ISO 27001", "ISO 9001", "ISO 42001", "SOC 2", "GDPR", "CCPA"].map((item) => (
-                <li key={item}><span className="text-sm text-muted-foreground">{item}</span></li>
-              ))}
+              <li><Link to="/governance" className="text-sm text-muted-foreground transition-colors hover:text-primary">Governance</Link></li>
+              <li><Link to="/policies" className="text-sm text-muted-foreground transition-colors hover:text-primary">Policy Center</Link></li>
+              <li><Link to="/docs" className="text-sm text-muted-foreground transition-colors hover:text-primary">Documentation</Link></li>
+              <li><Link to="/verify" className="text-sm text-muted-foreground transition-colors hover:text-primary">Verify Certificate</Link></li>
+              <li><Link to="/resources" className="text-sm text-muted-foreground transition-colors hover:text-primary">{t("nav.resources")}</Link></li>
             </ul>
           </div>
 
@@ -56,10 +64,10 @@ const Footer = () => {
               ))}
             </ul>
             <div className="mt-4">
-              <a href="https://verify.iucb.org" className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-secondary/80">
+              <Link to="/verify" className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-secondary/80">
                 <ExternalLink className="h-3.5 w-3.5" />
                 {t("footer.verifyCredentials")}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -67,8 +75,8 @@ const Footer = () => {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} {t("footer.copyright")}</p>
           <div className="flex gap-6">
-            <Link to="/privacy" className="text-xs text-muted-foreground transition-colors hover:text-foreground">{t("footer.privacy")}</Link>
-            <Link to="/terms" className="text-xs text-muted-foreground transition-colors hover:text-foreground">{t("footer.terms")}</Link>
+            <Link to="/policies" className="text-xs text-muted-foreground transition-colors hover:text-foreground">{t("footer.privacy")}</Link>
+            <Link to="/policies" className="text-xs text-muted-foreground transition-colors hover:text-foreground">{t("footer.terms")}</Link>
           </div>
         </div>
       </div>
