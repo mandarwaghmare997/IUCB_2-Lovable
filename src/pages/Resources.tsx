@@ -33,8 +33,8 @@ const Resources = () => {
     <main className="pt-16">
       <section className="bg-gradient-navy py-24">
         <div className="container mx-auto px-4 text-center lg:px-8">
-          <h1 className="mb-4 text-4xl font-bold font-display text-foreground md:text-5xl">{t("resourcesPage.title")}</h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">{t("resourcesPage.subtitle")}</p>
+          <h1 className="mb-4 text-4xl font-bold font-display text-white md:text-5xl">{t("resourcesPage.title")}</h1>
+          <p className="mx-auto max-w-2xl text-lg text-white/70">{t("resourcesPage.subtitle")}</p>
         </div>
       </section>
 
