@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import {
-  LayoutDashboard, Award, Building2, FileTemplate, FileText,
+  LayoutDashboard, Award, Building2, FileCode, FileText,
   MessageSquare, Users, Shield, ScrollText, Settings, LogOut, ChevronLeft, Menu,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
