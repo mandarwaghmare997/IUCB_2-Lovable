@@ -1,4 +1,4 @@
-import { Shield, CheckCircle, Globe, Lock, Award, ArrowRight, BookOpen, Users, Laptop, Heart, Factory, GraduationCap } from "lucide-react";
+import { Shield, CheckCircle, Globe, Lock, Award, ArrowRight, BookOpen, Users, Laptop, Heart, Factory, GraduationCap, Search, FileText, Phone, ClipboardCheck, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -7,6 +7,15 @@ import iucbSeal from "@/assets/iucb-seal-original.png";
 
 const Index = () => {
   const { t } = useTranslation();
+
+  const quickActions = [
+    { icon: Search, title: "Verify Certificate", desc: "Check the authenticity of any IUCB-accredited certificate", link: "/verify", color: "text-emerald-500" },
+    { icon: Shield, title: "Explore Schemes", desc: "Browse accreditation programs for CBs, auditors & training providers", link: "/accreditation", color: "text-primary" },
+    { icon: BookOpen, title: "Training & Exams", desc: "Professional development pathways and examination systems", link: "/training", color: "text-blue-500" },
+    { icon: FileText, title: "Policies & Docs", desc: "Access governance documents, policies, and manuals", link: "/docs", color: "text-purple-500" },
+    { icon: Phone, title: "Contact Support", desc: "Get help from our accreditation and partnerships teams", link: "/contact", color: "text-orange-500" },
+    { icon: ClipboardCheck, title: "Apply / Enquire", desc: "Start your accreditation application or submit an enquiry", link: "/contact", color: "text-primary" },
+  ];
 
   const features = [
     { icon: Shield, titleKey: "features.accreditation.title", descKey: "features.accreditation.description", link: "/accreditation" },
@@ -42,8 +51,8 @@ const Index = () => {
       {/* Hero */}
       <section className="relative flex min-h-[90vh] items-center overflow-hidden pt-16">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="" className="h-full w-full object-cover opacity-30 dark:opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/50" />
+          <img src={heroBg} alt="" className="h-full w-full object-cover opacity-20 dark:opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/60" />
         </div>
         <div className="container relative z-10 mx-auto px-4 py-20 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -72,8 +81,35 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Quick Actions — Task-based navigation */}
+      <section className="border-y border-border bg-card py-16">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="mb-10 text-center">
+            <h2 className="text-2xl font-bold font-display text-foreground md:text-3xl">What would you like to do?</h2>
+            <p className="mt-2 text-muted-foreground">Quick access to the most common tasks</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {quickActions.map((action) => (
+              <Link
+                key={action.title}
+                to={action.link}
+                className="group flex items-start gap-4 rounded-xl border border-border bg-background p-5 transition-all hover:border-primary/30 hover:shadow-md"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-muted">
+                  <action.icon className={`h-5 w-5 ${action.color}`} />
+                </div>
+                <div>
+                  <h3 className="font-semibold font-display text-foreground group-hover:text-primary transition-colors">{action.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{action.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Feature Cards */}
-      <section className="border-y border-border bg-card py-20">
+      <section className="py-20">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-6 md:grid-cols-3">
             {features.map((f) => (
@@ -93,7 +129,7 @@ const Index = () => {
       </section>
 
       {/* Why Choose IUCB */}
-      <section className="py-24">
+      <section className="border-y border-border bg-card py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold font-display text-foreground md:text-4xl">
@@ -116,7 +152,7 @@ const Index = () => {
       </section>
 
       {/* Focus Areas */}
-      <section className="border-y border-border bg-card py-24">
+      <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="mb-4 text-center">
             <h2 className="mb-4 text-3xl font-bold font-display text-foreground md:text-4xl">{t("focusAreas.title")}</h2>
@@ -124,7 +160,7 @@ const Index = () => {
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {focusAreas.map((area) => (
-              <div key={area.titleKey} className="rounded-xl border border-border bg-secondary/50 p-6 transition-colors hover:border-primary/30">
+              <div key={area.titleKey} className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/30">
                 <h3 className="mb-2 font-semibold font-display text-foreground">{t(area.titleKey)}</h3>
                 <p className="text-sm text-muted-foreground">{t(area.descKey)}</p>
               </div>
@@ -141,14 +177,14 @@ const Index = () => {
       </section>
 
       {/* Trusted Sectors */}
-      <section className="py-24">
+      <section className="border-y border-border bg-card py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="mb-12 text-center text-3xl font-bold font-display text-foreground md:text-4xl">
             {t("sectors.title")} <span className="text-gradient-gold">{t("sectors.titleHighlight")}</span>
           </h2>
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
             {sectors.map((sector) => (
-              <div key={sector.labelKey} className="flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/20">
+              <div key={sector.labelKey} className="flex flex-col items-center gap-3 rounded-xl border border-border bg-background p-6 transition-colors hover:border-primary/20">
                 <sector.icon className="h-8 w-8 text-primary" />
                 <span className="text-sm font-medium text-foreground">{t(sector.labelKey)}</span>
               </div>
@@ -158,7 +194,7 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-border bg-card py-24">
+      <section className="py-24">
         <div className="container mx-auto px-4 text-center lg:px-8">
           <h2 className="mb-4 text-3xl font-bold font-display text-foreground md:text-4xl">
             {t("cta.title")} <span className="text-gradient-gold">{t("cta.titleHighlight")}</span>?

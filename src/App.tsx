@@ -14,6 +14,10 @@ import Training from "./pages/Training";
 import Directory from "./pages/Directory";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
+import Governance from "./pages/Governance";
+import Policies from "./pages/Policies";
+import Verify from "./pages/Verify";
+import Docs from "./pages/Docs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,6 +39,10 @@ const App = () => (
             <Route path="/directory" element={<Directory />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/governance" element={<Governance />} />
+            <Route path="/policies" element={<Policies />} />
+            <Route path="/verify" element={<Verify />} />
+            <Route path="/docs" element={<Docs />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
