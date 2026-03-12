@@ -36,8 +36,13 @@ const AdminDocuments = () => {
     e.preventDefault();
     const slug = form.slug || form.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
     const { error } = await supabase.from("documents").insert({
-      ...form,
+      title: form.title,
       slug,
+      category: form.category as any,
+      summary: form.summary,
+      version: form.version,
+      effective_date: form.effective_date || null,
+      is_public: form.is_public,
       created_by: user?.id,
     });
     if (error) {
