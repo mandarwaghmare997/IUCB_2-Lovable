@@ -27,7 +27,7 @@ const AdminComplaints = () => {
   useEffect(() => { load(); }, []);
 
   const updateStatus = async (id: string, newStatus: string) => {
-    const { error } = await supabase.from("complaints").update({ status: newStatus }).eq("id", id);
+    const { error } = await supabase.from("complaints").update({ status: newStatus as any }).eq("id", id);
     if (error) toast({ title: "Error", description: error.message, variant: "destructive" });
     else { toast({ title: `Status set to ${newStatus}` }); load(); }
   };

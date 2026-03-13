@@ -39,7 +39,7 @@ const AdminOrganizations = () => {
   };
 
   const updateStatus = async (id: string, newStatus: string) => {
-    const { error } = await supabase.from("organizations").update({ status: newStatus }).eq("id", id);
+    const { error } = await supabase.from("organizations").update({ status: newStatus as any }).eq("id", id);
     if (error) toast({ title: "Error", description: error.message, variant: "destructive" });
     else { toast({ title: `Status updated to ${newStatus}` }); load(); }
   };
