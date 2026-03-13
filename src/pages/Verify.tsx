@@ -1,20 +1,20 @@
 import { useState } from "react";
-import { Search, Shield, CheckCircle, XCircle, AlertTriangle, Clock, QrCode, Building, ArrowRight } from "lucide-react";
+import { Search, Shield, CheckCircle, XCircle, AlertTriangle, Clock, QrCode, Building, ArrowRight, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 type CertStatus = "active" | "expired" | "suspended" | "revoked";
 
 interface CertResult {
   number: string;
   organization: string;
-  standard: string;
   scope: string;
   status: CertStatus;
   issueDate: string;
   expiryDate: string;
-  accreditedBody: string;
+  certificateType: string;
 }
 
 const statusConfig: Record<CertStatus, { label: string; icon: typeof CheckCircle; color: string; bg: string }> = {
@@ -24,34 +24,49 @@ const statusConfig: Record<CertStatus, { label: string; icon: typeof CheckCircle
   revoked: { label: "Revoked", icon: XCircle, color: "text-red-600 dark:text-red-400", bg: "bg-red-500/10" },
 };
 
-// Demo data for illustration
-const demoResults: CertResult[] = [
-  {
-    number: "IUCB-ISO9001-2024-001234",
-    organization: "CyberTrust Certifications Ltd.",
-    standard: "ISO 27001:2022",
-    scope: "Information Security Management System",
-    status: "active",
-    issueDate: "2024-03-15",
-    expiryDate: "2027-03-14",
-    accreditedBody: "IUCB Accredited",
-  },
-];
+const mapDbStatus = (status: string, expiryDate: string | null): CertStatus => {
+  if (status === "revoked") return "revoked";
+  if (status === "suspended") return "suspended";
+  if (status === "expired" || (expiryDate && new Date(expiryDate) < new Date())) return "expired";
+  if (status === "published" || status === "generated") return "active";
+  return "expired";
+};
 
 const Verify = () => {
   const [query, setQuery] = useState("");
   const [searched, setSearched] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<CertResult[]>([]);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!query.trim()) return;
+    setLoading(true);
     setSearched(true);
-    // Demo: show results if query matches pattern
-    if (query.toLowerCase().includes("iucb") || query.toLowerCase().includes("cyber")) {
-      setResults(demoResults);
+
+    const { data } = await supabase
+      .from("certificates")
+      .select("certificate_number, certificate_type, scope_summary, status, issue_date, expiry_date, organization_id, organizations(legal_name, public_name)")
+      .eq("publication_state", "published")
+      .or(`certificate_number.ilike.%${query}%,verification_slug.ilike.%${query}%`)
+      .limit(10);
+
+    if (data && data.length > 0) {
+      setResults(
+        data.map((c: any) => ({
+          number: c.certificate_number,
+          organization: c.organizations?.public_name || c.organizations?.legal_name || "—",
+          scope: c.scope_summary || "—",
+          status: mapDbStatus(c.status, c.expiry_date),
+          issueDate: c.issue_date || "—",
+          expiryDate: c.expiry_date || "—",
+          certificateType: c.certificate_type,
+        }))
+      );
     } else {
       setResults([]);
     }
+    setLoading(false);
   };
 
   return (
@@ -59,13 +74,13 @@ const Verify = () => {
       {/* Hero */}
       <section className="bg-gradient-navy py-20">
         <div className="container mx-auto px-4 text-center lg:px-8">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-            <Shield className="h-8 w-8 text-primary" />
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10">
+            <Shield className="h-8 w-8 text-white" />
           </div>
-          <h1 className="mb-4 text-4xl font-bold font-display text-foreground md:text-5xl">
+          <h1 className="mb-4 text-4xl font-bold font-display text-white md:text-5xl">
             Certificate <span className="text-gradient-gold">Verification</span>
           </h1>
-          <p className="mx-auto max-w-xl text-lg text-muted-foreground">
+          <p className="mx-auto max-w-xl text-lg text-white/70">
             Verify the authenticity of any certificate issued by an IUCB-accredited body.
           </p>
         </div>
@@ -85,8 +100,8 @@ const Verify = () => {
                   className="pl-10 h-12"
                 />
               </div>
-              <Button type="submit" className="h-12 px-6 bg-gradient-gold font-semibold text-primary-foreground hover:opacity-90">
-                Verify
+              <Button type="submit" disabled={loading} className="h-12 px-6 bg-gradient-gold font-semibold text-primary-foreground hover:opacity-90">
+                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Verify"}
               </Button>
             </form>
             <p className="mt-3 text-center text-sm text-muted-foreground">
@@ -95,14 +110,14 @@ const Verify = () => {
           </div>
 
           {/* Results */}
-          {searched && (
+          {searched && !loading && (
             <div className="mx-auto mt-10 max-w-2xl">
               {results.length === 0 ? (
                 <div className="rounded-xl border border-border bg-card p-8 text-center">
                   <XCircle className="mx-auto mb-4 h-12 w-12 text-muted-foreground/50" />
                   <h3 className="mb-2 font-semibold font-display text-foreground">No certificate found</h3>
                   <p className="text-sm text-muted-foreground">
-                    No certificate matching "{query}" was found. Please check the number and try again.
+                    No published certificate matching "{query}" was found. Please check the number and try again.
                   </p>
                   <Link to="/contact" className="mt-4 inline-flex items-center gap-1 text-sm text-primary hover:underline">
                     Report an issue <ArrowRight className="h-3.5 w-3.5" />
@@ -127,8 +142,8 @@ const Verify = () => {
                         </div>
                         <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
                           <div>
-                            <span className="text-muted-foreground">Standard:</span>
-                            <span className="ml-2 font-medium text-foreground">{cert.standard}</span>
+                            <span className="text-muted-foreground">Type:</span>
+                            <span className="ml-2 font-medium text-foreground">{cert.certificateType}</span>
                           </div>
                           <div>
                             <span className="text-muted-foreground">Scope:</span>
@@ -145,7 +160,7 @@ const Verify = () => {
                         </div>
                         <div className="mt-3 border-t border-border pt-3">
                           <p className="text-xs text-muted-foreground">
-                            Accredited by: <span className="font-medium text-primary">{cert.accreditedBody}</span>
+                            Accredited by: <span className="font-medium text-primary">IUCB Accredited</span>
                           </p>
                         </div>
                       </div>

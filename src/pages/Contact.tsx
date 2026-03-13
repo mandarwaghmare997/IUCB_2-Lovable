@@ -1,17 +1,32 @@
 import { useTranslation } from "react-i18next";
-import { Mail, MapPin, Phone, Building } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { t } = useTranslation();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    const { error } = await supabase.from("complaints").insert({
+      name: form.name,
+      email: form.email,
+      subject: form.subject,
+      message: form.message,
+      type: "general" as const,
+    });
+    setLoading(false);
+    if (error) {
+      toast.error("Failed to send message. Please try again.");
+      return;
+    }
     toast.success("Message sent! We'll get back to you shortly.");
     setForm({ name: "", email: "", subject: "", message: "" });
   };
@@ -28,7 +43,6 @@ const Contact = () => {
       <section className="py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-5">
-            {/* Form */}
             <div className="lg:col-span-3">
               <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-border bg-card p-8">
                 <div className="grid gap-5 sm:grid-cols-2">
@@ -49,13 +63,12 @@ const Contact = () => {
                   <label className="mb-1.5 block text-sm font-medium text-foreground">{t("contactPage.formMessage")}</label>
                   <Textarea rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
                 </div>
-                <Button type="submit" size="lg" className="w-full bg-gradient-gold font-semibold text-primary-foreground hover:opacity-90 sm:w-auto">
-                  {t("contactPage.formSubmit")}
+                <Button type="submit" size="lg" disabled={loading} className="w-full bg-gradient-gold font-semibold text-primary-foreground hover:opacity-90 sm:w-auto">
+                  {loading ? "Sending..." : t("contactPage.formSubmit")}
                 </Button>
               </form>
             </div>
 
-            {/* Info */}
             <div className="space-y-6 lg:col-span-2">
               <div className="rounded-xl border border-border bg-card p-6">
                 <h3 className="mb-3 font-semibold font-display text-foreground">{t("contactPage.generalTitle")}</h3>

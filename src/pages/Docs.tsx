@@ -1,97 +1,62 @@
-import { useState } from "react";
-import { BookOpen, FileText, Shield, Scale, AlertTriangle, Award, Download, ExternalLink, Search, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { BookOpen, FileText, Shield, Scale, AlertTriangle, Award, Download, ExternalLink, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 interface DocEntry {
+  id: string;
   title: string;
   slug: string;
-  category: "core" | "policy" | "guidance";
-  pages: number;
+  category: string;
   version: string;
-  updated: string;
-  summary: string;
-  icon: typeof FileText;
+  updated_at: string;
+  summary: string | null;
+  file_url: string | null;
+  html_content: string | null;
 }
 
-const documents: DocEntry[] = [
-  {
-    title: "Accreditation Manual",
-    slug: "accreditation-manual",
-    category: "core",
-    pages: 48,
-    version: "v5.2",
-    updated: "January 2025",
-    summary: "Comprehensive guide covering all accreditation requirements, processes, assessment criteria, and obligations for Certification Bodies, Auditors, and Training Providers.",
-    icon: BookOpen,
-  },
-  {
-    title: "Company Deck",
-    slug: "company-deck",
-    category: "core",
-    pages: 24,
-    version: "v3.0",
-    updated: "December 2024",
-    summary: "Corporate overview of IUCB including mission, vision, services, global presence, and partnership opportunities.",
-    icon: FileText,
-  },
-  {
-    title: "Impartiality Policy",
-    slug: "impartiality-policy",
-    category: "policy",
-    pages: 12,
-    version: "v3.1",
-    updated: "December 2024",
-    summary: "Establishes IUCB's commitment to objectivity and freedom from conflicts of interest in all accreditation activities.",
-    icon: Scale,
-  },
-  {
-    title: "Appeals & Complaints Procedure",
-    slug: "appeals-complaints",
-    category: "policy",
-    pages: 8,
-    version: "v2.4",
-    updated: "November 2024",
-    summary: "Formal process for lodging appeals against accreditation decisions and submitting complaints about accredited bodies or IUCB personnel.",
-    icon: AlertTriangle,
-  },
-  {
-    title: "Marks Usage Policy",
-    slug: "marks-usage",
-    category: "policy",
-    pages: 16,
-    version: "v4.0",
-    updated: "January 2025",
-    summary: "Guidelines governing the use of IUCB accreditation marks, logos, and certificates by accredited entities.",
-    icon: Award,
-  },
-  {
-    title: "Code of Ethics",
-    slug: "code-of-ethics",
-    category: "guidance",
-    pages: 10,
-    version: "v2.1",
-    updated: "October 2024",
-    summary: "Ethical standards and conduct expectations for IUCB personnel, assessors, and accredited organizations.",
-    icon: Shield,
-  },
-];
+const categoryIcons: Record<string, typeof FileText> = {
+  policy: Scale,
+  procedure: AlertTriangle,
+  manual: BookOpen,
+  deck: FileText,
+  guidance: Shield,
+  generated_certificate: Award,
+};
 
 const categories = [
   { key: "all", label: "All Documents" },
-  { key: "core", label: "Core Documents" },
+  { key: "manual", label: "Manuals" },
   { key: "policy", label: "Policies" },
+  { key: "procedure", label: "Procedures" },
   { key: "guidance", label: "Guidance" },
+  { key: "deck", label: "Decks" },
 ];
 
 const Docs = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
+  const [docs, setDocs] = useState<DocEntry[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filtered = documents.filter((doc) => {
+  useEffect(() => {
+    const load = async () => {
+      const { data } = await supabase
+        .from("documents")
+        .select("id, title, slug, category, version, updated_at, summary, file_url, html_content")
+        .eq("is_public", true)
+        .eq("status", "published")
+        .order("title");
+      if (data) setDocs(data);
+      setLoading(false);
+    };
+    load();
+  }, []);
+
+  const filtered = docs.filter((doc) => {
     const matchesCategory = category === "all" || doc.category === category;
-    const matchesSearch = search === "" || doc.title.toLowerCase().includes(search.toLowerCase()) || doc.summary.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch = search === "" || doc.title.toLowerCase().includes(search.toLowerCase()) || (doc.summary || "").toLowerCase().includes(search.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -100,23 +65,23 @@ const Docs = () => {
       {/* Hero */}
       <section className="bg-gradient-navy py-20">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-            <BookOpen className="h-7 w-7 text-primary" />
+          <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-white/10">
+            <BookOpen className="h-7 w-7 text-white" />
           </div>
-          <h1 className="mb-4 text-4xl font-bold font-display text-foreground md:text-5xl">
+          <h1 className="mb-4 text-4xl font-bold font-display text-white md:text-5xl">
             IUCB <span className="text-gradient-gold">Documentation</span>
           </h1>
-          <p className="max-w-xl text-lg text-muted-foreground">
+          <p className="max-w-xl text-lg text-white/70">
             Access accreditation manuals, policies, and corporate documents. All documents are available in multiple languages.
           </p>
           <div className="mt-8 max-w-md">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50" />
               <Input
                 placeholder="Search documents..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-10 h-11 bg-background/50 border-border/50"
+                className="pl-10 h-11 bg-white/10 border-white/20 text-white placeholder:text-white/50"
               />
             </div>
           </div>
@@ -126,7 +91,6 @@ const Docs = () => {
       {/* Documents */}
       <section className="py-12">
         <div className="container mx-auto px-4 lg:px-8">
-          {/* Category Filter */}
           <div className="mb-8 flex flex-wrap gap-2">
             {categories.map((cat) => (
               <Button
@@ -141,39 +105,49 @@ const Docs = () => {
             ))}
           </div>
 
-          {/* Document Grid */}
-          {filtered.length === 0 ? (
+          {loading ? (
+            <div className="py-12 text-center text-muted-foreground">Loading documents…</div>
+          ) : filtered.length === 0 ? (
             <div className="rounded-xl border border-border bg-card p-12 text-center">
-              <p className="text-muted-foreground">No documents matching your search.</p>
+              <p className="text-muted-foreground">No documents found.</p>
             </div>
           ) : (
             <div className="grid gap-4 md:grid-cols-2">
-              {filtered.map((doc) => (
-                <div key={doc.slug} className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                      <doc.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold font-display text-foreground group-hover:text-primary transition-colors">{doc.title}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{doc.summary}</p>
-                      <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                        <span className="rounded-full bg-muted px-2 py-0.5">{doc.version}</span>
-                        <span>{doc.updated}</span>
-                        <span>{doc.pages} pages</span>
+              {filtered.map((doc) => {
+                const Icon = categoryIcons[doc.category] || FileText;
+                return (
+                  <div key={doc.id} className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                        <Icon className="h-5 w-5 text-primary" />
                       </div>
-                      <div className="mt-3 flex gap-2">
-                        <Button variant="ghost" size="sm" className="h-8 text-xs text-primary hover:text-primary hover:bg-primary/10">
-                          <ExternalLink className="h-3 w-3 mr-1" /> Read Online
-                        </Button>
-                        <Button variant="ghost" size="sm" className="h-8 text-xs text-muted-foreground hover:text-foreground">
-                          <Download className="h-3 w-3 mr-1" /> PDF
-                        </Button>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold font-display text-foreground group-hover:text-primary transition-colors">{doc.title}</h3>
+                        {doc.summary && <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{doc.summary}</p>}
+                        <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                          <span className="rounded-full bg-muted px-2 py-0.5">{doc.version}</span>
+                          <span>{new Date(doc.updated_at).toLocaleDateString("en-US", { year: "numeric", month: "short" })}</span>
+                          <span className="capitalize">{doc.category}</span>
+                        </div>
+                        <div className="mt-3 flex gap-2">
+                          {doc.html_content && (
+                            <Button variant="ghost" size="sm" className="h-8 text-xs text-primary hover:text-primary hover:bg-primary/10">
+                              <ExternalLink className="h-3 w-3 mr-1" /> Read Online
+                            </Button>
+                          )}
+                          {doc.file_url && (
+                            <a href={doc.file_url} target="_blank" rel="noopener noreferrer">
+                              <Button variant="ghost" size="sm" className="h-8 text-xs text-muted-foreground hover:text-foreground">
+                                <Download className="h-3 w-3 mr-1" /> PDF
+                              </Button>
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
