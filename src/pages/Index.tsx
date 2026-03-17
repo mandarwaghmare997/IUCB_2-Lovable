@@ -195,8 +195,8 @@ const Index = () => {
                 </div>
                 <p className="mb-4 text-sm font-medium text-destructive/80">⚠ {ps.problem}</p>
                 <div className="border-t border-border pt-4">
-                  <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/10">
-                    <CheckCircle className="h-4 w-4 text-emerald-500" />
+                  <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-primary/10">
+                    <CheckCircle className="h-4 w-4 text-primary" />
                   </div>
                   <p className="text-sm text-foreground leading-relaxed">{ps.solution}</p>
                 </div>
