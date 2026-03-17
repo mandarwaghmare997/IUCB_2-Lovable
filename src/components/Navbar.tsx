@@ -226,11 +226,11 @@ const Navbar = () => {
               )
             )}
             <div className="mt-3 flex flex-col gap-2">
-              <Link to="/verify" onClick={() => setMobileOpen(false)}>
+              <a href="https://verify.iucb.org" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
                 <Button variant="outline" className="w-full border-primary/30 text-foreground hover:bg-primary/10">
                   Verify Certificate
                 </Button>
-              </Link>
+              </a>
               <Link to="/accreditation" onClick={() => setMobileOpen(false)}>
                 <Button className="w-full bg-gradient-gold font-semibold text-primary-foreground">
                   Get Accredited
