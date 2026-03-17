@@ -7,6 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import GoToTopButton from "@/components/GoToTopButton";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Accreditation from "./pages/Accreditation";
@@ -58,6 +60,8 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
+            <GoToTopButton />
             <PublicLayout>
               <Routes>
                 {/* Public routes */}
