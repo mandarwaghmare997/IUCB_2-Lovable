@@ -107,8 +107,8 @@ const Accreditation = () => {
                 </div>
                 <div className="space-y-6">
                   <div className="rounded-xl bg-gradient-navy p-6 shadow-xl">
-                    <h3 className="mb-2 text-xl font-bold font-display text-foreground">Ready to Apply?</h3>
-                    <p className="mb-6 text-sm text-muted-foreground">
+                    <h3 className="mb-2 text-xl font-bold font-display text-white">Ready to Apply?</h3>
+                    <p className="mb-6 text-sm text-white/70">
                       Start your journey towards global recognition today. Download the application kit or contact our team.
                     </p>
                     <a href="mailto:accreditations@iucb.org?subject=ACB Application Inquiry">
@@ -116,7 +116,7 @@ const Accreditation = () => {
                         {t("accreditationPage.applyBtn")}
                       </Button>
                     </a>
-                    <p className="mt-3 text-center text-xs text-muted-foreground">Response time: 2-3 business days</p>
+                    <p className="mt-3 text-center text-xs text-white/50">Response time: 2-3 business days</p>
                   </div>
                   <div className="rounded-xl border border-border bg-card p-6">
                     <h4 className="mb-2 font-bold text-foreground">Annual Surveillance</h4>
@@ -207,8 +207,8 @@ const Accreditation = () => {
                 </div>
                 <div>
                   <div className="rounded-xl bg-gradient-navy p-6 shadow-xl">
-                    <h3 className="mb-2 text-xl font-bold font-display text-foreground">Become an Accredited Provider</h3>
-                    <p className="mb-6 text-sm text-muted-foreground">
+                    <h3 className="mb-2 text-xl font-bold font-display text-white">Become an Accredited Provider</h3>
+                    <p className="mb-6 text-sm text-white/70">
                       Join our global network of recognized training organizations and offer IUCB-accredited courses.
                     </p>
                     <a href="mailto:accreditations@iucb.org?subject=ATPP Application Inquiry">
