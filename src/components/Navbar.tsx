@@ -138,11 +138,11 @@ const Navbar = () => {
           <LanguageSwitcher />
           <ThemeToggle />
           <div className="hidden xl:flex items-center gap-2">
-            <Link to="/verify">
+            <a href="https://verify.iucb.org" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm" className="border-primary/30 text-foreground hover:bg-primary/10">
                 {t("nav.verify", "Verify")}
               </Button>
-            </Link>
+            </a>
             <Link to="/accreditation">
               <Button size="sm" className="bg-gradient-gold font-semibold text-primary-foreground hover:opacity-90">
                 Get Accredited
