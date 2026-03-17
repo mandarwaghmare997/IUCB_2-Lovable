@@ -21,9 +21,9 @@ const navItems = [
   {
     key: "trust",
     children: [
-      { key: "governance", path: "/governance" },
-      { key: "policies", path: "/docs" },
-      { key: "resources", path: "/resources" },
+      { key: "governance", href: "https://doc.iucb.org/governance" },
+      { key: "policies", href: "https://doc.iucb.org" },
+      { key: "resources", href: "https://doc.iucb.org/resources" },
     ],
   },
   { key: "about", path: "/about" },
