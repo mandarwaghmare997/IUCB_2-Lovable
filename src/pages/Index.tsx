@@ -121,7 +121,7 @@ const Index = () => {
 
               {/* Micro social proof */}
               <div className="flex flex-wrap items-center gap-6 pt-2 text-sm text-muted-foreground">
-                <span className="flex items-center gap-1.5"><CheckCircle className="h-4 w-4 text-emerald-500" /> 500+ accredited organizations</span>
+                <span className="flex items-center gap-1.5"><CheckCircle className="h-4 w-4 text-primary" /> 500+ accredited organizations</span>
                 <span className="flex items-center gap-1.5"><Globe className="h-4 w-4 text-primary" /> 80+ countries</span>
                 <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> 50+ standards</span>
               </div>
