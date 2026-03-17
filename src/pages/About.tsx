@@ -163,8 +163,8 @@ const About = () => {
                 <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-primary/20">
                   <Shield className="h-8 w-8 text-primary" />
                 </div>
-                <h2 className="mb-4 text-3xl font-bold font-display text-foreground">Code of Ethics</h2>
-                <p className="text-muted-foreground">
+                <h2 className="mb-4 text-3xl font-bold font-display text-white">Code of Ethics</h2>
+                <p className="text-white/70">
                   Our foundation is built on unshakeable integrity. Every member of the IUCB ecosystem adheres to strict ethical guidelines.
                 </p>
               </div>
@@ -172,7 +172,7 @@ const About = () => {
                 {ethics.map((item) => (
                   <div key={item.title} className="space-y-2">
                     <h4 className="text-xl font-bold text-primary">{item.title}</h4>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+                    <p className="text-sm leading-relaxed text-white/70">{item.desc}</p>
                   </div>
                 ))}
               </div>

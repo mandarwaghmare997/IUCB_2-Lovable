@@ -25,10 +25,10 @@ const Governance = () => {
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
             Transparency & Integrity
           </div>
-          <h1 className="mb-4 text-4xl font-bold font-display text-foreground md:text-5xl">
+          <h1 className="mb-4 text-4xl font-bold font-display text-white md:text-5xl">
             Governance <span className="text-gradient-gold">Framework</span>
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto max-w-2xl text-lg text-white/70">
             IUCB operates under a robust governance structure designed to ensure impartiality, transparency, and accountability in all accreditation activities.
           </p>
         </div>

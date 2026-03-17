@@ -207,8 +207,8 @@ const Accreditation = () => {
                 </div>
                 <div>
                   <div className="rounded-xl bg-gradient-navy p-6 shadow-xl">
-                    <h3 className="mb-2 text-xl font-bold font-display text-foreground">Become an Accredited Provider</h3>
-                    <p className="mb-6 text-sm text-muted-foreground">
+                    <h3 className="mb-2 text-xl font-bold font-display text-white">Become an Accredited Provider</h3>
+                    <p className="mb-6 text-sm text-white/70">
                       Join our global network of recognized training organizations and offer IUCB-accredited courses.
                     </p>
                     <a href="mailto:accreditations@iucb.org?subject=ATPP Application Inquiry">
