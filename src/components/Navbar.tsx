@@ -175,20 +175,38 @@ const Navbar = () => {
                   </button>
                   {mobileExpanded === item.key && (
                     <div className="ml-4 flex flex-col gap-0.5 border-l border-border pl-3">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.path}
-                          to={child.path}
-                          onClick={() => setMobileOpen(false)}
-                          className={`rounded-md px-3 py-2 text-sm transition-colors ${
-                            location.pathname === child.path
-                              ? "bg-primary/10 text-primary font-medium"
-                              : "text-foreground/70 hover:text-foreground hover:bg-muted"
-                          }`}
-                        >
-                          {t(`nav.${child.key}`)}
-                        </Link>
-                      ))}
+                      {item.children.map((child) => {
+                        const isExternal = 'href' in child;
+                        const url = isExternal ? (child as any).href : (child as any).path;
+                        if (isExternal) {
+                          return (
+                            <a
+                              key={child.key}
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setMobileOpen(false)}
+                              className="rounded-md px-3 py-2 text-sm text-foreground/70 transition-colors hover:text-foreground hover:bg-muted"
+                            >
+                              {t(`nav.${child.key}`)}
+                            </a>
+                          );
+                        }
+                        return (
+                          <Link
+                            key={url}
+                            to={url}
+                            onClick={() => setMobileOpen(false)}
+                            className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                              location.pathname === url
+                                ? "bg-primary/10 text-primary font-medium"
+                                : "text-foreground/70 hover:text-foreground hover:bg-muted"
+                            }`}
+                          >
+                            {t(`nav.${child.key}`)}
+                          </Link>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
