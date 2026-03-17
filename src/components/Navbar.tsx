@@ -82,19 +82,36 @@ const Navbar = () => {
                 </button>
                 {openDropdown === item.key && (
                   <div className="absolute left-0 top-full z-50 min-w-[200px] rounded-lg border border-border bg-popover p-1.5 shadow-lg animate-fade-in">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.path}
-                        to={child.path}
-                        className={`block rounded-md px-3 py-2 text-sm transition-colors ${
-                          location.pathname === child.path
-                            ? "bg-primary/10 text-primary font-medium"
-                            : "text-popover-foreground hover:bg-muted"
-                        }`}
-                      >
-                        {t(`nav.${child.key}`)}
-                      </Link>
-                    ))}
+                    {item.children.map((child) => {
+                      const isExternal = 'href' in child;
+                      const url = isExternal ? (child as any).href : (child as any).path;
+                      if (isExternal) {
+                        return (
+                          <a
+                            key={child.key}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block rounded-md px-3 py-2 text-sm text-popover-foreground transition-colors hover:bg-muted"
+                          >
+                            {t(`nav.${child.key}`)}
+                          </a>
+                        );
+                      }
+                      return (
+                        <Link
+                          key={url}
+                          to={url}
+                          className={`block rounded-md px-3 py-2 text-sm transition-colors ${
+                            location.pathname === url
+                              ? "bg-primary/10 text-primary font-medium"
+                              : "text-popover-foreground hover:bg-muted"
+                          }`}
+                        >
+                          {t(`nav.${child.key}`)}
+                        </Link>
+                      );
+                    })}
                   </div>
                 )}
               </div>
