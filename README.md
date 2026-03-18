@@ -1,93 +1,184 @@
-# IUCB – International Unified Certification Board
+# IUCB — International Unified Certification Board
+
+> Global accreditation body driving trust and excellence in ISO standards, cybersecurity, and privacy certification. Headquartered in Tallinn, Estonia.
 
 ## About IUCB
 
-The **International Unified Certification Board (IUCB)** is a global accreditation and certification body that provides internationally recognized accreditation for certification bodies, auditors, and training providers across ISO, Cybersecurity, and Privacy domains.
+The **International Unified Certification Board (IUCB)** is a global accreditation ecosystem that empowers organizations, auditors, and training bodies through internationally recognized accreditation and benchmarking frameworks for **ISO**, **Cybersecurity**, and **Privacy** standards.
 
 IUCB serves **500+ accredited organizations** across **80+ countries**, covering **50+ standards** with **2,000+ certified auditors**.
 
-### Core Services
-
-- **Accreditation** — Recognition for certification bodies, auditors & training providers to issue certifications with international weight.
-- **Certification Programs** — Professional certification programs for individuals across management systems, cybersecurity, and privacy.
-- **Training & Examination** — Accredited training courses and globally recognized examinations.
-
-## Repository Structure
-
-This monorepo contains three deployable sites:
-
-```
-├── /                    → Main website (iucb.org)
-├── /docs/               → Documentation portal (doc.iucb.org)
-└── /verify/             → Certificate verification portal (verify.iucb.org)
-```
-
-### Main Website (`iucb.org`)
-
-The primary IUCB web application — a trust platform featuring:
-- Homepage with value proposition and social proof
-- Accreditation, Certifications, and Training pages
-- Contact form with email queue integration
-- Admin dashboard for managing certificates, organizations, and users
-- Multi-language support (EN, AR, FR, ES)
-- Dark/Light theme
-
-### Documentation Portal (`doc.iucb.org`)
-
-A separate static site for hosting IUCB's governance documents, policies, procedures, manuals, and guidance materials. See [`docs/README.md`](docs/README.md) for setup instructions.
-
-### Verification Portal (`verify.iucb.org`)
-
-A standalone certificate verification tool where users can look up certificate validity using a certificate number. Uses an Excel sheet as the data source. See [`verify/README.md`](verify/README.md) for setup instructions.
+**Core Services:**
+- **Accreditation Programs** — For certification bodies (CBs), auditors, and training providers
+- **Certification Programs** — ISO 27001, ISO 9001, ISO 22301, Cybersecurity & Privacy certifications
+- **Training & Examination** — Lead auditor, implementer, and awareness programs
+- **Certificate Verification** — Public verification portal for all issued certificates
 
 ---
 
-## Tech Stack (Main Site)
+## Repository Structure
 
-- **React 18** + **TypeScript** + **Vite**
-- **Tailwind CSS** + **shadcn/ui**
-- **Lovable Cloud** (backend: database, auth, edge functions, storage)
-- **i18next** for internationalization
-- **React Router** for client-side routing
+This monorepo contains three deployable applications:
+
+```
+iucb-web/
+├── /                    → Main website (iucb.org)
+│   ├── src/             → React/TypeScript source
+│   ├── public/          → Static assets + .htaccess
+│   └── dist/            → Build output (after npm run build)
+│
+├── /docs/               → Documentation portal (doc.iucb.org)
+│   └── [Separate Vite/React app]
+│
+├── /verify/             → Certificate verification (verify.iucb.org)
+│   └── [Separate Vite/React app]
+│
+└── /supabase/           → Backend configuration (Lovable Cloud)
+    ├── config.toml
+    └── functions/       → Edge functions
+```
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | React 18 + TypeScript |
+| Build | Vite 5 |
+| Styling | Tailwind CSS 3.4 + shadcn/ui |
+| Routing | React Router 6 |
+| Backend | Lovable Cloud (Supabase) |
+| i18n | i18next (EN, AR, FR, ES) |
+| Auth | Supabase Auth (Admin only) |
+
+---
 
 ## Local Development
 
 ```sh
-# Clone the repository
-git clone <YOUR_GIT_URL>
-cd <YOUR_PROJECT_NAME>
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-## Building for Production
+---
+
+## Deploying to Hostinger — Step-by-Step
+
+### Prerequisites
+- Hostinger Business or Premium hosting plan
+- Three domains/subdomains configured:
+  - `iucb.org` → main site
+  - `doc.iucb.org` → documentation portal
+  - `verify.iucb.org` → certificate verification
+
+### Step 1: Build the Main Site
 
 ```sh
-# Build main site
+cd /path/to/iucb-web
+npm install
 npm run build
-# Output: dist/
-
-# Build docs site
-cd docs && npm install && npm run build
-# Output: docs/dist/
-
-# Build verify site
-cd verify && npm install && npm run build
-# Output: verify/dist/
 ```
 
-## Deployment (Hostinger)
+This creates a `dist/` folder with all production files.
 
-1. **Main site** → Upload `dist/` contents to `public_html/`
-2. **doc.iucb.org** → Upload `docs/dist/` contents to the subdomain's `public_html/`
-3. **verify.iucb.org** → Upload `verify/dist/` contents to the subdomain's `public_html/`
+### Step 2: Upload to Hostinger
 
-Ensure subdomains are configured in Hostinger's DNS settings pointing to the correct folders.
+#### Main Site (iucb.org)
+
+1. Log in to **Hostinger hPanel**
+2. Go to **Files → File Manager**
+3. Navigate to `public_html/` (root for iucb.org)
+4. **Delete** all existing files in `public_html/`
+5. **Upload** the entire contents of `dist/` into `public_html/`
+
+Your `public_html/` should look like:
+```
+public_html/
+├── .htaccess          ← SPA routing + security headers (CRITICAL)
+├── index.html         ← Main entry point
+├── favicon.png        ← IUCB logo as favicon
+├── robots.txt
+└── assets/            ← JS, CSS, images (auto-generated by Vite)
+    ├── index-abc123.js
+    ├── index-abc123.css
+    └── ...
+```
+
+> ⚠️ **The `.htaccess` file is critical!** Without it, refreshing any page other than `/` will show a 404 error. Hostinger uses Apache, and `.htaccess` handles the SPA routing.
+
+#### Documentation Portal (doc.iucb.org)
+
+1. In hPanel → **Domains → Subdomains**
+2. Create subdomain `doc.iucb.org` → point to `public_html/doc`
+3. Build: `cd docs && npm install && npm run build`
+4. Upload `docs/dist/` contents into `public_html/doc/`
+5. **Copy `.htaccess`** from main site into `public_html/doc/`
+
+#### Verification Portal (verify.iucb.org)
+
+1. Create subdomain `verify.iucb.org` → point to `public_html/verify`
+2. Build: `cd verify && npm install && npm run build`
+3. Upload `verify/dist/` contents into `public_html/verify/`
+4. **Copy `.htaccess`** from main site into `public_html/verify/`
+
+### Step 3: Verify Deployment
+
+- `https://iucb.org` → main site loads ✓
+- `https://iucb.org/about` → loads correctly (not a 404) ✓
+- `https://doc.iucb.org` → documentation portal ✓
+- `https://verify.iucb.org` → certificate verification ✓
+
+### Common Issues
+
+| Problem | Solution |
+|---|---|
+| Pages show 404 on refresh | `.htaccess` file is missing — re-upload it to `public_html/` |
+| Blank white page | Check browser console for errors; ensure `assets/` folder was uploaded |
+| Styles look broken | Clear browser cache (Ctrl+Shift+R) |
+| Subdomain not working | DNS propagation takes up to 48 hours |
+| "Page not styled" look | The `.htaccess` wasn't uploaded — it's a hidden file, enable "Show hidden files" in File Manager |
+
+---
+
+## Available IUCB Documents
+
+| Document | Category |
+|---|---|
+| IUCB Accreditation Manual | Manual |
+| Appeals & Complaints Procedure | Procedure |
+| IUCB Company Deck | Deck |
+| Impartiality Policy | Policy |
+| Marks Usage Policy | Policy |
+| Policy Framework Overview | Policy |
+
+### Suggested Additional Documents
+
+1. **Quality Manual** — Internal quality management system documentation
+2. **Code of Ethics & Conduct** — Professional conduct standards
+3. **Data Privacy / GDPR Policy** — Data handling and privacy commitment
+4. **Fee Schedule** — Transparent accreditation and certification pricing
+5. **Surveillance Procedure** — Periodic surveillance audit process for accredited CBs
+6. **Risk Assessment Guidance** — Guidelines for risk-based auditing
+7. **Terms & Conditions** — Legal terms for IUCB services
+8. **Anti-Bribery & Anti-Corruption Policy** — International compliance standards
+9. **Competence Requirements** — Qualification criteria for auditors and assessors
+10. **Scope Extension Procedure** — Process for CBs to expand certification scope
+
+---
+
+## Branding
+
+- **Favicon**: IUCB logo (`public/favicon.png`)
+- **Primary Colors**: Dark Navy (#0a1628) + Gold (#c9a84c)
+- **Typography**: Space Grotesk (headings) + Inter (body)
+
+---
 
 ## Publishing via Lovable
 
 Open [Lovable](https://lovable.dev) → Share → Publish. Connect a custom domain under Project → Settings → Domains.
+
+---
+
+© 2026 International Unified Certification Board. All rights reserved.
